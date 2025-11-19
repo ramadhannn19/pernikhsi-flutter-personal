@@ -1,0 +1,8 @@
+{
+    "@@locale": "ar",
+    "counterAppBarTitle": "عملية حسابية",
+    "@counterAppBarTitle": {
+        "description": "يتم عرض النص في AppBar الخاص بصفحة العداد"
+    },
+    "locale": "عربي"
+}

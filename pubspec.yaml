@@ -1,0 +1,84 @@
+name: pernikhsi
+description: "A new Flutter project."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  bloc_concurrency: ^0.3.0
+  cupertino_icons: ^1.0.8
+  dartz: ^0.10.1
+  dio: ^5.9.0
+  equatable: ^2.0.7
+  flutter_bloc: ^9.1.1
+  flutter_svg: ^2.2.1
+  get_it: ^8.2.0
+  hive: ^2.2.3
+  intl: ^0.20.2
+  json_annotation: ^4.9.0
+  path_provider: ^2.1.5
+  stream_transform: ^2.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  build_runner: ^2.8.0
+  flutter_lints: ^5.0.0
+  json_serializable: ^6.11.1
+
+flutter:
+  generate: true
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/flags/
+    - assets/fonts/
+    - assets/images/
+    - assets/images/bitmaps/
+    - assets/images/svgs/
+
+  fonts:
+    - family: NunitoSans
+      fonts:
+        - asset: assets/fonts/nunito/NunitoSans-Black.ttf
+          weight: 900
+        - asset: assets/fonts/nunito/NunitoSans-BlackItalic.ttf
+          style: italic
+          weight: 900
+        - asset: assets/fonts/nunito/NunitoSans-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/nunito/NunitoSans-ExtraBoldItalic.ttf
+          style: italic
+          weight: 800
+        - asset: assets/fonts/nunito/NunitoSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/nunito/NunitoSans-BoldItalic.ttf
+          style: italic
+          weight: 700
+        - asset: assets/fonts/nunito/NunitoSans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/nunito/NunitoSans-SemiBoldItalic.ttf
+          style: italic
+          weight: 600
+        - asset: assets/fonts/nunito/NunitoSans-Regular.ttf
+        - asset: assets/fonts/nunito/NunitoSans-Italic.ttf
+          style: italic
+        - asset: assets/fonts/nunito/NunitoSans-Light.ttf
+          weight: 300
+        - asset: assets/fonts/nunito/NunitoSans-LightItalic.ttf
+          style: italic
+          weight: 300
+        - asset: assets/fonts/nunito/NunitoSans-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/nunito/NunitoSans-ExtraLightItalic.ttf
+          style: italic
+          weight: 200

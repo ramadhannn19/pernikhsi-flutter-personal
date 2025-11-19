@@ -1,0 +1,19 @@
+# Directory where all ARB (Application Resource Bundle) files are stored.
+# ARB files contain localized strings in JSON-like format for each language.
+# Example: app_en.arb (English), app_id.arb (Indonesian).
+arb-dir: lib/l10n/arb
+
+# The main ARB file used as the template for generating translations.
+# Typically contains the base language (English) and all string keys.
+# Other ARB files (e.g., app_id.arb) must match the keys defined here.
+template-arb-file: app_en.arb
+
+# The name of the Dart file that will be generated for localization.
+# This file contains strongly-typed getters for each localized string.
+# Example usage in code: AppLocalizations.of(context).helloWorld
+output-localization-file: app_localizations.dart
+
+# The directory where generated Dart localization files will be stored.
+# This should be inside your lib/ folder so it can be imported into the project.
+# Example: import 'package:pernikhsi/l10n/generated/app_localizations.dart';
+output-dir: lib/l10n/generated
