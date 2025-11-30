@@ -12,66 +12,77 @@ class _FormSectionState extends State<_FormSection> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(28),
-            border: Border.all(color: context.theme.colorScheme.primary),
-          ),
-          padding: EdgeInsets.all(16),
-          child: Column(
-            spacing: 16,
-            children: [
-              RegularInput(
-                label: 'Email / No. HP / NIP HSI',
-                hintText: "Type here",
-                validator: (validator) {
-                  if (validator!.isEmpty) {
-                    return 'Email / No. HP / NIP HSI is required';
-                  }
-                  return null;
-                },
-              ),
-              RegularInput(
-                label: 'Password',
-                hintText: "Type here",
-                obscureText: _obscureText,
-                suffix: IconButton(
-                  icon: Icon(
-                    _obscureText ? Icons.remove_red_eye : Icons.visibility_off,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _obscureText = !_obscureText;
-                    });
-                  },
-                  color: context.theme.colorScheme.primary,
-                ),
-                validator: (validator) {
-                  if (validator!.isEmpty) {
-                    return 'Password is required';
-                  }
-                  return null;
-                },
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    'Forgot Password?',
-                    style: TextStyle(
+    return BlocBuilder<SignInBloc, SignInState>(
+      builder: (context, state) {
+        return SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(28),
+                    border: Border.all(
                       color: context.theme.colorScheme.primary,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                ],
-              ),
-            ],
+                  padding: EdgeInsets.all(16),
+                  child: Column(
+                    children: [
+                      //EMAIL
+                      RegularInput(
+                        label: 'Email / No. HP / NIP HSI',
+                        hintText: "Type here",
+                        onChange: (value) {
+                          context.read<SignInBloc>().add(EmailChanged(value));
+                        },
+                      ),
+
+                      //PASSWORD
+                      RegularInput(
+                        label: 'Password',
+                        hintText: "Type here",
+                        obscureText: _obscureText,
+                        onChange: (value) {
+                          context.read<SignInBloc>().add(
+                            PasswordChanged(value),
+                          );
+                        },
+                        suffix: IconButton(
+                          icon: Icon(
+                            _obscureText
+                                ? Icons.remove_red_eye
+                                : Icons.visibility_off,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _obscureText = !_obscureText;
+                            });
+                          },
+                          color: context.theme.colorScheme.primary,
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            'Forgot Password?',
+                            style: TextStyle(
+                              color: context.theme.colorScheme.primary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        );
+      },
     );
   }
 }
