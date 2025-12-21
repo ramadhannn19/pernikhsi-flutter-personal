@@ -1,7 +1,7 @@
 part of '../page.dart';
 
 class _ButtonSection extends StatelessWidget {
-  const _ButtonSection({super.key, this.onSignIn});
+  const _ButtonSection({this.onSignIn});
 
   final bool isLoading = false;
   final VoidCallback? onSignIn;
@@ -26,6 +26,7 @@ class _ButtonSection extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
           ),
         ),
+
         child: Text(
           "Sign In",
           style: TextStyle(

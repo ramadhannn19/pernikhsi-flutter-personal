@@ -1,7 +1,9 @@
 part of '../page.dart';
 
 class _FormSection extends StatefulWidget {
-  const _FormSection({super.key});
+  const _FormSection({required this.formKey});
+
+  final GlobalKey<FormState> formKey;
 
   @override
   State<_FormSection> createState() => _FormSectionState();
@@ -23,19 +25,39 @@ class _FormSectionState extends State<_FormSection> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(28),
-                    border: Border.all(
-                      color: context.theme.colorScheme.primary,
-                    ),
+                    border: Border.all(color: AppColors.grey[900]!),
                   ),
                   padding: EdgeInsets.all(16),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       //EMAIL
-                      RegularInput(
-                        label: 'Email / No. HP / NIP HSI',
-                        hintText: "Type here",
-                        onChange: (value) {
-                          context.read<SignInBloc>().add(EmailChanged(value));
+                      Text(
+                        "Email / NIP HSI",
+                        style: TextStyle(
+                          color: context.theme.colorScheme.primary,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+
+                      BlocBuilder<SignInBloc, SignInState>(
+                        builder: (context, state) {
+                          return TextField(
+                            keyboardType: TextInputType.emailAddress,
+                            onChanged: (value) => context
+                                .read<SignInBloc>()
+                                .add(EmailChanged(value)),
+                            decoration: InputDecoration(
+                              labelText: "Input Your Email",
+                              labelStyle: const TextStyle(
+                                fontWeight: FontWeight.normal,
+                                fontSize: 14,
+                                color: AppColors.grey,
+                              ),
+                              border: const OutlineInputBorder(),
+                              errorText: state.emailError,
+                            ),
+                          );
                         },
                       ),
 
@@ -49,6 +71,7 @@ class _FormSectionState extends State<_FormSection> {
                             PasswordChanged(value),
                           );
                         },
+                        errorText: state.passwordError,
                         suffix: IconButton(
                           icon: Icon(
                             _obscureText

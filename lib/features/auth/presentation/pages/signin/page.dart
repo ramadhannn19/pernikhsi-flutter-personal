@@ -23,36 +23,44 @@ class SignInPage extends StatelessWidget {
 
     return BlocProvider(
       create: (_) => SignInBloc(),
-      child: Scaffold(
-        resizeToAvoidBottomInset: true,
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: ListView(
-              // ListView otomatis scrollable, nggak perlu SingleChildScrollView + ConstrainedBox
-              shrinkWrap: true,
-              physics: const ClampingScrollPhysics(),
-              children: [
-                const SizedBox(height: 24),
-                _FormSection(key: UniqueKey()),
-                const SizedBox(height: 16),
-                _ButtonSection(
-                  key: UniqueKey(),
-                  onSignIn: () {
-                    if (formKey.currentState!.validate()) {
-                      formKey.currentState!.save();
-                    }
-                  },
+      child: Builder(
+        builder: (context) {
+          return Scaffold(
+            resizeToAvoidBottomInset: true,
+            body: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: ListView(
+                  shrinkWrap: true,
+                  physics: const ClampingScrollPhysics(),
+                  children: [
+                    const SizedBox(height: 24),
+
+                    //FORM
+                    _FormSection(formKey: formKey),
+                    const SizedBox(height: 16),
+
+                    //BUTTON
+                    _ButtonSection(
+                      onSignIn: () {
+                        context.read<SignInBloc>().add(SignInSubmitted());
+                      },
+                    ),
+                    const SizedBox(height: 16),
+
+                    //BUTTON REGISTER
+                    _ButtonRegisterSection(key: UniqueKey()),
+                    const SizedBox(height: 16),
+
+                    //REGISTER
+                    _SsoSection(key: UniqueKey()),
+                    const SizedBox(height: 24),
+                  ],
                 ),
-                const SizedBox(height: 16),
-                _ButtonRegisterSection(key: UniqueKey()),
-                const SizedBox(height: 16),
-                _SsoSection(key: UniqueKey()),
-                const SizedBox(height: 24),
-              ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }
