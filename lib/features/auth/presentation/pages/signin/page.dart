@@ -6,6 +6,7 @@ import 'package:pernikhsi/features/auth/auth.dart' show RegisterPage;
 import 'package:pernikhsi/features/auth/presentation/blocs/signin/blocs/signin_blocs.dart';
 import 'package:pernikhsi/features/auth/presentation/blocs/signin/blocs/signin_event.dart';
 import 'package:pernikhsi/features/auth/presentation/blocs/signin/blocs/signin_state.dart';
+import '../forgotpassword/page.dart' show ForgotPasswordPage;
 
 part 'sections/button_register_section.dart';
 part 'sections/button_section.dart';

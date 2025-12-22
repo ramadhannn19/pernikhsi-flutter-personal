@@ -86,14 +86,23 @@ class _FormSectionState extends State<_FormSection> {
                           color: context.theme.colorScheme.primary,
                         ),
                       ),
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Text(
-                            'Forgot Password?',
-                            style: TextStyle(
-                              color: context.theme.colorScheme.primary,
-                              fontWeight: FontWeight.bold,
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                ForgotPasswordPage.routeName,
+                              );
+                            },
+                            child: Text(
+                              'Forgot Password?',
+                              style: TextStyle(
+                                color: context.theme.colorScheme.primary,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ],

@@ -54,8 +54,14 @@ class AuthModule implements BaseModule {
         builder: (_) => const RegisterPage(),
         settings: settings,
       ),
+
       SignInPage.routeName: MaterialPageRoute(
         builder: (_) => const SignInPage(),
+        settings: settings,
+      ),
+
+      ForgotPasswordPage.routeName: MaterialPageRoute(
+        builder: (_) => const ForgotPasswordPage(),
         settings: settings,
       ),
     };
