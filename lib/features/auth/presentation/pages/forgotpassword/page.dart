@@ -40,9 +40,11 @@ class ForgotPasswordPage extends StatelessWidget {
               ),
               const SizedBox(height: 24),
 
+              //FORM
               _FormSection(formKey: formKey),
               const SizedBox(height: 16),
 
+              //BUTTON
               _ButtonSection(
                 onSubmit: () {
                   if (formKey.currentState!.validate()) {

@@ -31,8 +31,8 @@ class SignInState {
     return SignInState(
       email: email ?? this.email,
       password: password ?? this.password,
-      emailError: emailError ?? this.emailError,
-      passwordError: passwordError ?? this.passwordError,
+      emailError: emailError,
+      passwordError: passwordError,
       isLoading: isLoading ?? this.isLoading,
       isSuccess: isSuccess ?? this.isSuccess,
       errorMessage: errorMessage ?? this.errorMessage,

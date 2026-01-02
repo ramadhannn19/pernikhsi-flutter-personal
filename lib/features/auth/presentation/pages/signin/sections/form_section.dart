@@ -23,7 +23,7 @@ class _FormSectionState extends State<_FormSection> {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.white,
                     borderRadius: BorderRadius.circular(28),
                     border: Border.all(color: AppColors.grey[900]!),
                   ),
@@ -86,6 +86,7 @@ class _FormSectionState extends State<_FormSection> {
                           color: context.theme.colorScheme.primary,
                         ),
                       ),
+                      const SizedBox(height: 10),
 
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,

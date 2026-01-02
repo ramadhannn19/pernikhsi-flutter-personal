@@ -8,11 +8,10 @@ class _FormSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: formKey,
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(28),
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(25),
           border: Border.all(color: AppColors.grey[900]!),
         ),
         padding: const EdgeInsets.all(16),
@@ -21,24 +20,21 @@ class _FormSection extends StatelessWidget {
           children: [
             Text(
               'Email / NIP HSI',
-              style: TextStyle(
-                color: context.theme.colorScheme.primary,
-                fontWeight: FontWeight.w600,
-              ),
+              style: TextStyle(color: context.theme.colorScheme.primary),
             ),
             const SizedBox(height: 8),
+
             TextFormField(
               keyboardType: TextInputType.emailAddress,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Input your email',
-                border: OutlineInputBorder(),
+                labelStyle: const TextStyle(
+                  fontWeight: FontWeight.normal,
+                  fontSize: 14,
+                  color: AppColors.grey,
+                ),
+                border: const OutlineInputBorder(),
               ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Field cannot be empty';
-                }
-                return null;
-              },
             ),
           ],
         ),

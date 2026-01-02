@@ -10,8 +10,9 @@ class _FooterSection extends StatelessWidget {
       children: [
         const Text(
           "Already have an account? ",
-          style: TextStyle(fontSize: 14, color: Colors.black),
+          style: TextStyle(fontSize: 14, color: AppColors.black),
         ),
+
         TextButton(
           onPressed: () => Navigator.pop(context),
           child: Text(

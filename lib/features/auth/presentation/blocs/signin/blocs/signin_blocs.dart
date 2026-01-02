@@ -8,15 +8,18 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   SignInBloc() : super(SignInState()) {
     // Email/NIP
     on<EmailChanged>((event, emit) {
-      final emailError = EmailValidator.validate(event.email);
+      final emailError = EmailValidator.validate(state.email);
+
       emit(state.copyWith(email: event.email, emailError: emailError));
     });
 
     // Password
     on<PasswordChanged>((event, emit) {
-      final error = PasswordValidator.validate(event.password);
+      final passwordError = PasswordValidator.validate(state.password);
 
-      emit(state.copyWith(password: event.password, passwordError: error));
+      emit(
+        state.copyWith(password: event.password, passwordError: passwordError),
+      );
     });
 
     on<SignInSubmitted>((event, emit) {

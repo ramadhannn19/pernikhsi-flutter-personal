@@ -11,17 +11,19 @@ class _ButtonSection extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 24),
       width: double.infinity,
       height: 48,
+
       child: FilledButton(
         onPressed: onSubmit,
         style: ButtonStyle(
           side: WidgetStatePropertyAll(
             BorderSide(color: context.theme.colorScheme.primary),
           ),
-          backgroundColor: const WidgetStatePropertyAll(Colors.white),
+          backgroundColor: const WidgetStatePropertyAll(AppColors.white),
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
           ),
         ),
+
         child: Text(
           "Send Reset Link",
           style: TextStyle(
