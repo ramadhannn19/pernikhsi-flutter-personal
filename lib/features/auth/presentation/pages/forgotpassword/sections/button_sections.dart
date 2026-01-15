@@ -1,9 +1,8 @@
 part of '../page.dart';
 
 class _ButtonSection extends StatelessWidget {
-  const _ButtonSection({this.onSubmit});
-
-  final VoidCallback? onSubmit;
+  final GlobalKey<FormState> formKey;
+  const _ButtonSection({required this.formKey});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +12,13 @@ class _ButtonSection extends StatelessWidget {
       height: 48,
 
       child: FilledButton(
-        onPressed: onSubmit,
+        //Check Validator
+        onPressed: () {
+          if (formKey.currentState!.validate()) {
+            context.read<ForgotPasswordBloc>().add(ForgotPasswordSubmitted());
+          }
+        },
+
         style: ButtonStyle(
           side: WidgetStatePropertyAll(
             BorderSide(color: context.theme.colorScheme.primary),

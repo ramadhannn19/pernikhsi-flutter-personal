@@ -5,7 +5,19 @@ import 'package:pernikhsi/features/auth/presentation/blocs/forgotpassword/blocs/
 class ForgotPasswordBloc
     extends Bloc<ForgotPasswordEvent, ForgotPasswordState> {
   ForgotPasswordBloc() : super(ForgotPasswordState.initial()) {
+    //Email Changed
+    on<ForgotPasswordEmailChanged>(_onEmailChanged);
+
+    //Submit
     on<ForgotPasswordSubmitted>(_onSubmit);
+  }
+
+  //Update email tiap user ngetik
+  void _onEmailChanged(
+    ForgotPasswordEmailChanged event,
+    Emitter<ForgotPasswordState> emit,
+  ) {
+    emit(state.copyWith(email: event.email));
   }
 
   Future<void> _onSubmit(
