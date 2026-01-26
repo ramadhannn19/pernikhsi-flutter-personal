@@ -1,21 +1,21 @@
-// State : apa yang terjadi sekarang di UI / Form
+enum SignInStatus { initial, loading, success, error }
 
 class SignInState {
   final String email;
   final String password;
-  final String? emailError;
-  final String? passwordError;
-  final bool isLoading;
-  final bool isSuccess;
+
+  final String? emailError; // 🔥 TAMBAH
+  final String? passwordError; // 🔥 TAMBAH
+
+  final SignInStatus status;
   final String? errorMessage;
 
-  SignInState({
+  const SignInState({
     this.email = '',
     this.password = '',
     this.emailError,
     this.passwordError,
-    this.isLoading = false,
-    this.isSuccess = false,
+    this.status = SignInStatus.initial,
     this.errorMessage,
   });
 
@@ -24,18 +24,16 @@ class SignInState {
     String? password,
     String? emailError,
     String? passwordError,
-    bool? isLoading,
-    bool? isSuccess,
+    SignInStatus? status,
     String? errorMessage,
   }) {
     return SignInState(
       email: email ?? this.email,
       password: password ?? this.password,
-      emailError: emailError,
-      passwordError: passwordError,
-      isLoading: isLoading ?? this.isLoading,
-      isSuccess: isSuccess ?? this.isSuccess,
-      errorMessage: errorMessage ?? this.errorMessage,
+      emailError: emailError ?? this.emailError,
+      passwordError: passwordError ?? this.passwordError,
+      status: status ?? this.status,
+      errorMessage: errorMessage,
     );
   }
 }

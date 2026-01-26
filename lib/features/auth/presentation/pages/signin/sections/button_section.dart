@@ -1,41 +1,53 @@
 part of '../page.dart';
 
 class _ButtonSection extends StatelessWidget {
-  const _ButtonSection({this.onSignIn});
-
-  final bool isLoading = false;
-  final VoidCallback? onSignIn;
+  const _ButtonSection();
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 24),
-      width: double.infinity,
-      height: 48,
-      child: FilledButton(
-        onPressed: onSignIn,
-        style: ButtonStyle(
-          side: WidgetStatePropertyAll(
-            BorderSide(
-              strokeAlign: 1,
-              color: context.theme.colorScheme.primary,
-            ),
-          ),
-          backgroundColor: WidgetStatePropertyAll(Colors.white),
-          shape: WidgetStatePropertyAll(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
-          ),
-        ),
+    return BlocBuilder<SignInBloc, SignInState>(
+      builder: (context, state) {
+        final isLoading = state.status == SignInStatus.loading;
 
-        child: Text(
-          "Sign In",
-          style: TextStyle(
-            color: context.theme.colorScheme.primary,
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
+        return Container(
+          margin: const EdgeInsets.symmetric(vertical: 24),
+          constraints: const BoxConstraints(maxWidth: 260),
+
+          child: FilledButton(
+            onPressed: isLoading
+                ? null
+                : () {
+                    context.read<SignInBloc>().add(SignInSubmitted());
+                  },
+            style: ButtonStyle(
+              side: WidgetStatePropertyAll(
+                BorderSide(
+                  strokeAlign: 1,
+                  color: context.theme.colorScheme.primary,
+                ),
+              ),
+              backgroundColor: const WidgetStatePropertyAll(AppColors.white),
+              shape: WidgetStatePropertyAll(
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+              ),
+            ),
+            child: isLoading
+                ? const SizedBox(
+                    width: 20,
+                    height: 20,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  )
+                : Text(
+                    "Sign In",
+                    style: TextStyle(
+                      color: context.theme.colorScheme.primary,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
