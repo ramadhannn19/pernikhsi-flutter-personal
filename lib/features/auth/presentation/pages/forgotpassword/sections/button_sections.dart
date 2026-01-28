@@ -1,42 +1,22 @@
 part of '../page.dart';
 
 class _ButtonSection extends StatelessWidget {
-  final GlobalKey<FormState> formKey;
   const _ButtonSection({required this.formKey});
+
+  final GlobalKey<FormState> formKey;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 24),
+    return SizedBox(
       width: double.infinity,
-      height: 48,
-
-      child: FilledButton(
-        //Check Validator
+      child: ElevatedButton(
         onPressed: () {
-          if (formKey.currentState!.validate()) {
+          if (formKey.currentState?.validate() ?? false) {
+            // Trigger ForgotPasswordBloc submit event
             context.read<ForgotPasswordBloc>().add(ForgotPasswordSubmitted());
           }
         },
-
-        style: ButtonStyle(
-          side: WidgetStatePropertyAll(
-            BorderSide(color: context.theme.colorScheme.primary),
-          ),
-          backgroundColor: const WidgetStatePropertyAll(AppColors.white),
-          shape: WidgetStatePropertyAll(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
-          ),
-        ),
-
-        child: Text(
-          "Send Reset Link",
-          style: TextStyle(
-            color: context.theme.colorScheme.primary,
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-          ),
-        ),
+        child: const Text('Send Reset Link'),
       ),
     );
   }

@@ -25,7 +25,9 @@ class _EmailField extends StatelessWidget {
               decoration: InputDecoration(
                 hintText: "Input Your Email",
                 hintStyle: context.theme.textTheme.bodyMedium!.copyWith(
-                  color: context.theme.colorScheme.onSurfaceVariant,
+                  color: context.theme.colorScheme.primary.withValues(
+                    alpha: 0.5,
+                  ),
                 ),
                 errorText: state.emailError,
                 border: OutlineInputBorder(

@@ -7,6 +7,9 @@ import 'package:pernikhsi/features/auth/auth.dart' show RegisterPage;
 import 'package:pernikhsi/features/auth/presentation/blocs/signin/blocs/signin_blocs.dart';
 import 'package:pernikhsi/features/auth/presentation/blocs/signin/blocs/signin_event.dart';
 import 'package:pernikhsi/features/auth/presentation/blocs/signin/blocs/signin_state.dart';
+import 'package:pernikhsi/features/auth/presentation/blocs/sso/sso_blocs.dart';
+import 'package:pernikhsi/features/auth/presentation/blocs/sso/sso_event.dart';
+import 'package:pernikhsi/features/auth/presentation/pages/forgotpassword/page.dart';
 import 'package:pernikhsi/features/auth/presentation/pages/register/page.dart';
 
 //Import child page sections
@@ -15,6 +18,7 @@ part 'sections/button_section.dart';
 part 'sections/form/pages.dart';
 part 'sections/sso_section.dart';
 
+//import child page field
 part 'sections/form/fields/email_field.dart';
 part 'sections/form/fields/password_field.dart';
 part 'sections/form/fields/forgot_password_link.dart';
@@ -42,11 +46,10 @@ class SignInPage extends StatelessWidget {
                     shrinkWrap: true,
                     physics: const ClampingScrollPhysics(),
                     children: [
-                      const SizedBox(height: 60),
-
                       Center(
                         child: Column(
                           children: [
+                            //IMAGE
                             SizedBox(
                               height: 90,
                               child: SvgPicture.asset(
@@ -59,20 +62,40 @@ class SignInPage extends StatelessWidget {
                         ),
                       ),
 
-                      //FORM
-                      _FormSection(formKey: formKey),
-                      const SizedBox(height: 16),
+                      // FORM + BUTTON SIGN IN
+                      Container(
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.black.withValues(alpha: 0.1),
+                              blurRadius: 10,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            _FormSection(formKey: formKey),
+                            const SizedBox(height: 16),
 
-                      //BUTTON
-                      _ButtonSection(),
+                            _ButtonSection(),
+                          ],
+                        ),
+                      ),
                       const SizedBox(height: 16),
 
                       //BUTTON REGISTER
                       _ButtonRegisterSection(key: UniqueKey()),
                       const SizedBox(height: 16),
 
-                      //REGISTER
-                      _SsoSection(key: UniqueKey()),
+                      //REGISTER SSO
+                      BlocProvider(
+                        create: (_) => SsoBloc(),
+                        child: _SsoSection(),
+                      ),
                       const SizedBox(height: 24),
                     ],
                   ),

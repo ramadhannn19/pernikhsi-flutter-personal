@@ -13,7 +13,13 @@ class _FormSection extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors.white,
           borderRadius: BorderRadius.circular(25),
-          border: Border.all(color: AppColors.grey[900]!),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withAlpha((0.10 * 255).round()),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
         ),
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 35),
         child: Column(
@@ -21,10 +27,12 @@ class _FormSection extends StatelessWidget {
           children: [
             Text(
               'Email / NIP HSI',
-              style: TextStyle(color: context.theme.colorScheme.primary),
+              style: TextStyle(
+                color: context.theme.colorScheme.primary,
+                fontWeight: FontWeight.w500,
+              ),
             ),
             const SizedBox(height: 8),
-
             TextFormField(
               autovalidateMode: AutovalidateMode.onUserInteraction,
               keyboardType: TextInputType.emailAddress,
@@ -35,13 +43,19 @@ class _FormSection extends StatelessWidget {
                   fontSize: 14,
                   color: AppColors.grey,
                 ),
-                border: const OutlineInputBorder(),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(color: AppColors.grey[300]!),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(
+                    color: context.theme.colorScheme.primary,
+                    width: 2,
+                  ),
+                ),
               ),
-
-              //Connect UI -> Validator
               validator: ForgotPasswordValidator.validate,
-
-              //Send to bloc
               onChanged: (value) {
                 context.read<ForgotPasswordBloc>().add(
                   ForgotPasswordEmailChanged(value),

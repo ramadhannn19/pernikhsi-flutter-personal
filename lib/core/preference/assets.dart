@@ -11,6 +11,7 @@ class MainAssets {
   static const textLogoSvg = '$_baseImagePath/svgs/text-logo.svg';
   static const logoAppleSvg = '$_baseImagePath/svgs/Apple.svg';
   static const logoGoogleSvg = '$_baseImagePath/svgs/Google.svg';
+  static const logoFacebookSvg = '$_baseImagePath/svgs/Facebook.svg';
 
   // bitmap
   static const background = '$_baseImagePath/bitmaps/background.webp';

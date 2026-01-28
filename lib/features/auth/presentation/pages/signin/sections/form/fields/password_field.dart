@@ -32,7 +32,9 @@ class _PasswordFieldState extends State<_PasswordField> {
               decoration: InputDecoration(
                 hintText: "Type your password",
                 hintStyle: context.theme.textTheme.bodyMedium!.copyWith(
-                  color: context.theme.colorScheme.onSurfaceVariant,
+                  color: context.theme.colorScheme.primary.withValues(
+                    alpha: 0.5,
+                  ),
                 ),
                 errorText: state.passwordError,
                 border: OutlineInputBorder(

@@ -17,43 +17,56 @@ class ForgotPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
+
     return BlocProvider(
       create: (_) => ForgotPasswordBloc(),
-
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: ListView(
-              physics: const ClampingScrollPhysics(),
+            child: Column(
               children: [
+                const SizedBox(height: 32),
+
+                // Title + Subtitle grouped
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Forgot Password",
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: context.theme.colorScheme.primary,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      "Enter your email or NIP HSI to reset your password",
+                      style: TextStyle(
+                        color: AppColors.grey[700],
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
+
                 const SizedBox(height: 24),
 
-                Text(
-                  "Forgot Password",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: context.theme.colorScheme.primary,
-                  ),
-                ),
-                const SizedBox(height: 8),
-
-                Text(
-                  "Enter your email or NIP HSI to reset your password",
-                  style: TextStyle(color: AppColors.grey[700]),
-                ),
-                const SizedBox(height: 24),
-
-                //FORM
+                // Form
                 _FormSection(formKey: formKey),
+
                 const SizedBox(height: 16),
 
-                //BUTTON
+                // Button
                 _ButtonSection(formKey: formKey),
 
+                const Spacer(),
+
+                // Footer
                 _FooterSection(),
+                const SizedBox(height: 16),
               ],
             ),
           ),

@@ -17,10 +17,15 @@ class _FormSectionState extends State<_FormSection> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: const [
+            //EMAIL
             _EmailField(),
             SizedBox(height: 16),
+
+            //PASSSWORD
             _PasswordField(),
             SizedBox(height: 10),
+
+            //FORGOT PASSWORD
             _ForgotPassword(),
           ],
         ),

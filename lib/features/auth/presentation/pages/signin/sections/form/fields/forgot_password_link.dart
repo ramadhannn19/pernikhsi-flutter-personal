@@ -9,7 +9,12 @@ class _ForgotPassword extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const ForgotPasswordPage()),
+            );
+          },
           child: Text(
             'Forgot Password?',
             style: TextStyle(

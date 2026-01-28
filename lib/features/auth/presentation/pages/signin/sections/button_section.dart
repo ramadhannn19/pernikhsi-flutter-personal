@@ -9,10 +9,8 @@ class _ButtonSection extends StatelessWidget {
       builder: (context, state) {
         final isLoading = state.status == SignInStatus.loading;
 
-        return Container(
-          margin: const EdgeInsets.symmetric(vertical: 24),
-          constraints: const BoxConstraints(maxWidth: 260),
-
+        return SizedBox(
+          width: double.infinity,
           child: FilledButton(
             onPressed: isLoading
                 ? null
@@ -31,6 +29,8 @@ class _ButtonSection extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
               ),
             ),
+
+            //Conditional Rendering UI
             child: isLoading
                 ? const SizedBox(
                     width: 20,
