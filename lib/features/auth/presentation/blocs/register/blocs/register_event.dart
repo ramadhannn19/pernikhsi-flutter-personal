@@ -1,35 +1,39 @@
-// Event = apa yang user lakukan atau aksi yang terjadi di UI
+//Event = apa yang TERJADI di UI (aksi user atau trigger sistem)
 
 abstract class RegisterEvent {}
 
+// FIELD EVENTS
 class NameChanged extends RegisterEvent {
-  final String name;
   NameChanged(this.name);
+  final String name;
 }
 
 class GenderChanged extends RegisterEvent {
-  final String gender;
   GenderChanged(this.gender);
+  final String gender;
 }
 
 class NIPChanged extends RegisterEvent {
-  final String nip;
   NIPChanged(this.nip);
+  final String nip;
 }
 
 class EmailChanged extends RegisterEvent {
-  final String email;
   EmailChanged(this.email);
+  final String email;
 }
 
 class NumberChanged extends RegisterEvent {
-  final String number;
   NumberChanged(this.number);
+  final String number;
 }
 
 class PasswordChanged extends RegisterEvent {
-  final String password;
   PasswordChanged(this.password);
+  final String password;
 }
 
-class FormSubmitted extends RegisterEvent {}
+// ACTION EVENT
+class RegisterSubmitted extends RegisterEvent {
+  RegisterSubmitted();
+}

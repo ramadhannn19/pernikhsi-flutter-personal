@@ -1,6 +1,11 @@
-//State : apa yang sedang terjadi di UI.
+//variable Enum status
+enum RegisterStatus { initial, loading, success, error }
 
+//variable deklarasi di ui register
 class RegisterState {
+  final RegisterStatus status;
+  final String? errorMessage;
+
   final String? name;
   final String? nameError;
 
@@ -18,11 +23,11 @@ class RegisterState {
   final String? password;
   final String? passwordError;
 
-  final bool isSubmitting; // loading
-  final bool isSuccess;
-  final String? errorMessage;
-
+  //contructor
   RegisterState({
+    this.status = RegisterStatus.initial,
+    this.errorMessage,
+
     this.name,
     this.nameError,
 
@@ -39,13 +44,13 @@ class RegisterState {
 
     this.password,
     this.passwordError,
-
-    this.isSubmitting = false,
-    this.isSuccess = false,
-    this.errorMessage,
   });
 
+  //copyWith = alat buat bikin state BARU tanpa ngerusak state lama
   RegisterState copyWith({
+    RegisterStatus? status,
+    String? errorMessage,
+
     String? name,
     String? nameError,
 
@@ -62,12 +67,12 @@ class RegisterState {
 
     String? password,
     String? passwordError,
-
-    bool? isSubmitting,
-    bool? isSuccess,
-    String? errorMessage,
   }) {
+    //return itu ngembaliin state BARU ke pemanggil (emit)
     return RegisterState(
+      status: status ?? this.status,
+      errorMessage: errorMessage,
+
       name: name ?? this.name,
       nameError: nameError,
 
@@ -84,10 +89,6 @@ class RegisterState {
 
       password: password ?? this.password,
       passwordError: passwordError,
-
-      isSubmitting: isSubmitting ?? this.isSubmitting,
-      isSuccess: isSuccess ?? this.isSuccess,
-      errorMessage: errorMessage ?? this.errorMessage,
     );
   }
 }

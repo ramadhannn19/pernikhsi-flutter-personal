@@ -9,56 +9,104 @@ import 'register_state.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   RegisterBloc() : super(RegisterState()) {
-    //NAME
-    on<NameChanged>((event, emit) {
-      final error = NameValidator.validate(event.name);
+    on<NameChanged>(_onNameChanged);
+    on<GenderChanged>(_onGenderChanged);
+    on<NIPChanged>(_onNipChanged);
+    on<EmailChanged>(_onEmailChanged);
+    on<NumberChanged>(_onNumberChanged);
+    on<PasswordChanged>(_onPasswordChanged);
 
-      emit(state.copyWith(name: event.name, nameError: error));
-    });
+    // submit
+    on<RegisterSubmitted>(_onFormSubmitted);
+  }
 
-    //GENDER
-    on<GenderChanged>((event, emit) {
-      emit(state.copyWith(gender: event.gender));
-    });
+  void _onNameChanged(NameChanged event, Emitter<RegisterState> emit) {
+    emit(
+      state.copyWith(
+        name: event.name,
+        nameError: NameValidator.validate(event.name),
+      ),
+    );
+  }
 
-    //NIP
-    on<NIPChanged>((event, emit) {
+  void _onGenderChanged(GenderChanged event, Emitter<RegisterState> emit) {
+    emit(state.copyWith(gender: event.gender));
+  }
+
+  void _onNipChanged(NIPChanged event, Emitter<RegisterState> emit) {
+    emit(
+      state.copyWith(
+        nip: event.nip,
+        nipError: NipValidator.validate(event.nip),
+      ),
+    );
+  }
+
+  void _onEmailChanged(EmailChanged event, Emitter<RegisterState> emit) {
+    emit(
+      state.copyWith(
+        email: event.email,
+        emailError: EmailValidator.validate(event.email),
+      ),
+    );
+  }
+
+  void _onNumberChanged(NumberChanged event, Emitter<RegisterState> emit) {
+    emit(
+      state.copyWith(
+        number: event.number,
+        numberError: NumberValidator.validate(event.number),
+      ),
+    );
+  }
+
+  void _onPasswordChanged(PasswordChanged event, Emitter<RegisterState> emit) {
+    emit(
+      state.copyWith(
+        password: event.password,
+        passwordError: PasswordValidator.validate(event.password),
+      ),
+    );
+  }
+
+  Future<void> _onFormSubmitted(
+    RegisterSubmitted event,
+    Emitter<RegisterState> emit,
+  ) async {
+    //  cegah double submit
+    if (state.status == RegisterStatus.loading) return;
+
+    //  validasi final sebelum API
+    if (state.nameError != null ||
+        state.nipError != null ||
+        state.emailError != null ||
+        state.numberError != null ||
+        state.passwordError != null ||
+        state.gender == null) {
       emit(
         state.copyWith(
-          nip: event.nip,
-          nipError: NipValidator.validate(event.nip),
+          status: RegisterStatus.error,
+          errorMessage: 'Form belum valid',
         ),
       );
-    });
+      return;
+    }
 
-    //EMAIL
-    on<EmailChanged>((event, emit) {
+    emit(state.copyWith(status: RegisterStatus.loading));
+
+    try {
+      //  SIMULASI HIT API
+      await Future.delayed(const Duration(seconds: 2));
+
+      //  panggil repository.register(...)
+      emit(state.copyWith(status: RegisterStatus.success));
+    } catch (e) {
       emit(
         state.copyWith(
-          email: event.email,
-          emailError: EmailValidator.validate(event.email),
+          status: RegisterStatus.error,
+          errorMessage: e.toString(),
         ),
       );
-    });
-
-    //PHONE
-    on<NumberChanged>((event, emit) {
-      emit(
-        state.copyWith(
-          number: event.number,
-          numberError: NumberValidator.validate(event.number),
-        ),
-      );
-    });
-
-    //PASSWORD
-    on<PasswordChanged>((event, emit) {
-      emit(
-        state.copyWith(
-          password: event.password,
-          passwordError: PasswordValidator.validate(event.password),
-        ),
-      );
-    });
+    }
   }
 }
