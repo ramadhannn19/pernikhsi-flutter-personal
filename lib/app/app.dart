@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pernikhsi/core/core.dart';
+import 'package:pernikhsi/features/home/presentation/pages/landing/page.dart';
 import 'package:pernikhsi/features/setting/setting.dart';
 import 'package:pernikhsi/l10n/l10n.dart';
 
@@ -69,7 +70,7 @@ class _AppWidget extends StatelessWidget {
       onGenerateRoute: Modular.routes,
 
       // Initial screen shown when the app starts
-      home: const SplashPage(),
+      home: const LandingPage(),
     );
   }
 }
