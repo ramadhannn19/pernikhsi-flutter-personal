@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pernikhsi/core/core.dart';
 
+import 'package:pernikhsi/features/home/presentation/pages/landingpage/homeview/page.dart';
+
 import 'home.dart';
 
 /// Module definition for the **Home feature**.
@@ -50,10 +52,10 @@ class HomeModule implements BaseModule {
     // Example:
     // final args = (settings.arguments ?? {}) as Map;
     return {
-      // ExamplePage.routeName: MaterialPageRoute(
-      //   builder: (_) => const ExamplePage(),
-      //   settings: settings,
-      // ),
+      HomeView.routeName: MaterialPageRoute(
+        builder: (_) => const HomeView(),
+        settings: settings,
+      ),
     };
   }
 
