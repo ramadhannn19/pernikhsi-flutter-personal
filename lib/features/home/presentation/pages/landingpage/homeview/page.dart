@@ -4,6 +4,7 @@ import 'package:pernikhsi/features/home/presentation/pages/widgets/logohsi.dart'
 
 //Import parts of the homeview page
 part 'section/notification_bar.dart';
+part 'section/search_bar.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -17,11 +18,15 @@ class HomeView extends StatelessWidget {
         child: Column(
           children: [
             //notification bar
-            const NotificationBar(),
+            _NotificationBar(),
             const SizedBox(height: 16),
 
             //logo hsi
             LogoHsi(key: super.key, size: 30),
+            const SizedBox(height: 16),
+
+            //Search bar
+            _SearchBar(),
           ],
         ),
       ),

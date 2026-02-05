@@ -1,7 +1,7 @@
 part of '../page.dart';
 
-class NotificationBar extends StatelessWidget {
-  const NotificationBar({super.key});
+class _NotificationBar extends StatelessWidget {
+  const _NotificationBar();
 
   @override
   Widget build(BuildContext context) {
