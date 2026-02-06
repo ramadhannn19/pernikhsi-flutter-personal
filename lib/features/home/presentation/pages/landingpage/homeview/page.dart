@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:pernikhsi/core/preference/colors.dart';
 import 'package:pernikhsi/features/home/presentation/pages/widgets/logohsi.dart';
 
-//Import parts of the homeview page
+//Import parts of the section page
 part 'section/notification_bar.dart';
 part 'section/search_bar.dart';
+part 'section/carousel_section.dart';
+part 'section/carousel_item.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -27,6 +29,10 @@ class HomeView extends StatelessWidget {
 
             //Search bar
             _SearchBar(),
+            const SizedBox(height: 24),
+
+            //Carousel section
+            _CarouselSection(),
           ],
         ),
       ),

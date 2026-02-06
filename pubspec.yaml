@@ -45,6 +45,7 @@ flutter:
     - assets/images/
     - assets/images/bitmaps/
     - assets/images/svgs/
+    - assets/images/png/
 
   fonts:
     - family: NunitoSans
