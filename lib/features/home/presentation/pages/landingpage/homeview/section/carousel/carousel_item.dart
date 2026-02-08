@@ -1,4 +1,4 @@
-part of '../page.dart';
+part of '../../page.dart';
 
 class _CarouselItem extends StatelessWidget {
   const _CarouselItem();
@@ -6,9 +6,9 @@ class _CarouselItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 293,
+      width: 350,
       height: 133,
-      margin: const EdgeInsets.only(right: 12),
+      margin: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(16),

@@ -1,4 +1,4 @@
-part of '../page.dart';
+part of '../../page.dart';
 
 class _CarouselSection extends StatelessWidget {
   const _CarouselSection();
