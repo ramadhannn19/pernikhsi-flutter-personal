@@ -43,7 +43,7 @@ class _NewArrival extends StatelessWidget {
           ),
           const SizedBox(height: 16),
 
-          const _NewArrivalProduct(), // New Arrival products list
+          _NewArrivalProduct(), // New Arrival products list
         ],
       ),
     );

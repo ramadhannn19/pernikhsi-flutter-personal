@@ -1,7 +1,9 @@
 part of '../../page.dart';
 
 class _NewArrivalProduct extends StatelessWidget {
-  const _NewArrivalProduct();
+  _NewArrivalProduct();
+
+  final List<Product> products = ProductLocalDataSource().getProducts();
 
   @override
   Widget build(BuildContext context) {
@@ -10,9 +12,11 @@ class _NewArrivalProduct extends StatelessWidget {
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        itemCount: 5,
+        itemCount: products.length,
         separatorBuilder: (context, index) => const SizedBox(width: 12),
         itemBuilder: (context, index) {
+          final product = products[index];
+
           return Container(
             width: 140,
             decoration: BoxDecoration(
@@ -36,7 +40,7 @@ class _NewArrivalProduct extends StatelessWidget {
                     topRight: Radius.circular(12),
                   ),
                   child: Image.asset(
-                    'assets/images/png/image-12.png',
+                    product.imageUrl,
                     height: 120,
                     width: 140,
                     fit: BoxFit.cover,
@@ -48,7 +52,7 @@ class _NewArrivalProduct extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Product Name',
+                        product.name,
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -57,7 +61,7 @@ class _NewArrivalProduct extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        '\$29.99',
+                        'Rp ${product.price}',
                         style: TextStyle(fontSize: 12, color: AppColors.green),
                       ),
                     ],
